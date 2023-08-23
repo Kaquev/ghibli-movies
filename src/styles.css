@@ -1,0 +1,325 @@
+* {
+  font-family: "Lato", sans-serif;
+  font-family: "Lexend Giga", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  text-align: center;
+  background-color: #109ceb;
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  transition: 0.5s linear 0.1s;
+}
+
+header.off {
+  transform: translateY(-300px);
+}
+
+#progress-bar {
+  background-color: #109ceb;
+  height: 8px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+#progress-bar span {
+  background-color: #109ceb;
+  width: 0%;
+  height: 8px;
+  display: block;
+  transition: 0.2s;
+}
+
+.logo-title {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.menu {
+  background-color: black;
+  height: auto;
+  width: 100%;
+  margin-top: 30px;
+}
+
+.menu-button {
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.menu-button a {
+  text-decoration: none;
+  color: rgb(246, 247, 248);
+  text-align: center;
+  font-size: 15px;
+}
+
+.menu-button li {
+  margin-top: 26px;
+}
+
+.menu-button a:hover {
+  color: #109ceb !important;
+}
+
+a[data-tab].active {
+  color: #109ceb !important;
+}
+
+#input-search {
+  border: solid #ccc 2px;
+  margin-bottom: 12px;
+}
+
+.filter-container select {
+  border: solid #ccc 2px;
+
+}
+
+.box-filter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  margin-top: 25px;
+  gap: 12px;
+}
+
+#button-filter,
+#button-filter-pro-direct,
+#button-filter-movie,
+#button-filter-character-gender,
+#button-filter-vehicle-class,
+#button-filter-character-specie,
+#button-filter-location-climate,
+#button-filter-location-terrain {
+  width: 15rem;
+  height: 30px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+
+
+#main-container {
+  max-width: 100%;
+  margin: auto;
+  text-align: center;
+  margin-top: 80px;
+}
+
+.movie-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 255px);
+  justify-content: center;
+  gap: 120px 40px;
+  margin-bottom: 350px;
+}
+
+.movie-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.movie-container figcaption {
+  display: flex;
+  justify-content: center;
+  border: 1px solid #ccc;
+  font-size: 15px;
+}
+
+hr {
+  border: 1px solid #ccc;
+}
+
+.tab-content2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 302px);
+  justify-content: center;
+  gap: 120px 70px;
+  margin-bottom: 350px;
+}
+
+.tab-content2 img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}
+
+.tab-content2 p {
+  text-align: center;
+  font-size: 12px;
+  margin-top: 12px;
+}
+
+.tab-content2 figcaption {
+  text-align: center;
+  font-size: 15px;
+}
+
+
+
+#button-filter-prodirect {
+  width: 15rem;
+  height: 30px;
+  border: 2px solid #ccc;
+}
+
+#characters-big-container,
+#vehicles-big-container,
+#directors-big-container,
+#producers-big-container,
+#locations-big-container,
+#trivia-big-container {
+  display: none;
+}
+
+#trivia-big-container {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+#button-filter-movie,
+#button-filter-character-gender,
+#button-filter-vehicle-class,
+#button-filter-character-specie,
+#button-filter-location-climate,
+#button-filter-location-terrain {
+  display: none;
+}
+
+#characters-big-container,
+#vehicles-big-container,
+#directors-big-container,
+#producers-big-container,
+#locations-big-container {
+  display: none;
+}
+
+.content {
+  border: 2px solid #ccc;
+}
+
+footer ul li {
+  list-style: none;
+  text-align: center;
+}
+
+.imagen-footer img {
+  margin: 0;
+
+  right: 0;
+}
+
+.info {
+  display: none;
+  position: absolute;
+  max-width: 235px;
+  border-radius: 0 6px 6px 6px;
+  border: 1px solid #000000;
+  text-align: left;
+  background: rgba(255, 255, 255, 0.904);
+  padding: 10px;
+  color: #0a0a0a;
+  font-size: 12px;
+}
+
+.title-tooltip {
+  font-size: 20px;
+  margin-bottom: 10px;
+
+}
+
+#root .poster:hover div.info {
+  display: block;
+}
+
+
+#graficos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 480px);
+  justify-content: center;
+  margin-top: 90px;
+}
+
+#trivia-big-container {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+#trivia-big-container p,
+h1 {
+  text-align: center;
+}
+
+#director_chart_div {
+
+  margin-bottom: 140px;
+}
+
+#productor_chart_div {
+  margin-bottom: 120px;
+}
+
+#grilla-info {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 480px);
+  justify-content: center;
+  margin-top: 100px;
+  gap: 30px;
+  padding-bottom: 150px;
+  text-align: justify;
+}
+
+@media (max-width:900px) {
+
+  body {
+    max-width: 100%;
+  }
+
+  .menu-button {
+    flex-direction: column;
+  }
+
+}
+
+@media (max-width: 600px) {
+  .box-filter {
+    flex-direction: column;
+  }
+
+  #grilla-info {
+    grid-template-columns: 1fr;
+  }
+
+  #director_chart_div,
+  #productor_chart_div {
+    max-width: 95%;
+  }
+
+  .menu-button {
+    flex-direction: column;
+  }
+
+  #button-filter-container,
+  #button-filter-character-gender,
+  #button-filter-character-specie,
+  #button-movie-filter,
+  #button-filter,
+  #button-filter-pro-direct {
+    flex-direction: column;
+    align-items: center;
+  }
+
+
+}
