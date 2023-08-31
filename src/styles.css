@@ -241,6 +241,7 @@ footer ul li {
 }
 
 #root .poster:hover div.info {
+  /*Del id root la clase poster, cuando le haga hover el div cn clase info tendra display block (hace ver tooltip) */
   display: block;
 }
 

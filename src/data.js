@@ -1,3 +1,14 @@
+
+/*La función tiene dos páramentro tabName(nombre de la pestaña) y 
+tabContent (contenido de la pestaña)
+Por cada tabContent, se cambiará el display a none
+
+Se crea una variable llamada selectedTab (pestaña seleccionada) que contiene un
+//DOM que llama el Id con tabName (el nombre de la pestaña) 
+//Finalmente se cambia el display de la pestaña seleccionada a "block"
+(para que se muestre solo ese contenido de esa pestaña)*/
+
+
 export const showTab = (tabName, tabContents) => {
   tabContents.forEach(function (tab) {
     tab.style.display = "none";
@@ -13,12 +24,17 @@ export const actives = {
     });
   },
 };
+
+
+
 //se declara una constante como objeto para que este tenga muchas funciones dentro
 export const filterImport = {
-  // Se crea funcion para recibir data de peliculas y el nombre de productor
-  // para volver a mostrar las peliculas se llama a la funcion createfilms
-  // el parametro type es para filtrar por productor o director, se captura desde cada option
-  // seleccionada
+  /* Creo la funcion filterForProducersAndDirectors con sus parametros
+  con if le indico que: si no hay !films retorne un array vacio
+  si name es igual "all" o "" retorne todos los films
+  si tipo es prod retorne la data filtrada (films.filter) por el nombre del productor
+  si no, retorna data filtrada (films.filter) por el nombre directoR*/
+
   filterForProducersAndDirectors: (films, name, type) => {
     if (!films) {
       return [];
@@ -72,16 +88,7 @@ export const filterImport = {
       return dataFiltered;
     }
   },
-  /*filterForVehicleClass: (vehicles, classes) => {
-    if (classes === "all" || classes === "") {
-      return vehicles;
-    } else {
-      const dataFiltered = vehicles.filter(function (vehicle) {
-        return vehicle.vehicle_class === classes;
-      });
-      return dataFiltered;
-    }
-  },*/
+
   filterForLocationClimate: (locations, climates) => {
     if (!locations) {
       return [];
@@ -108,6 +115,15 @@ export const filterImport = {
   },
 };
 
+/* En caso de que una pestaña sea activa se retorna sobre la data 
+el método sort para ordenar alfabéticamente. 
+El método tiene dos parámetros a y b que serían sustitutos de los títulos de las películas.
+Se utiliza un operador ternario, cuya condición es que el nombre (pasado en minúscula con
+toLowerCase) del parámetro a sea menor que el nombre de b.
+En el caso que sea verdadera el nombre a será ordenado antes del nombre b, si es falsa
+ocurrirá lo contrario.*/
+
+
 export const orderImport = {
   sortAToZTitle: (data, tabActive) => {
     if (tabActive === "Movies") {
@@ -127,9 +143,14 @@ export const orderImport = {
         a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 1,
       );
     } else {
-      return [];
+      return [];// en el caso de que no se cumpla ninguna de las condiciones anteriores,
+      // se retorna un array vacío
     }
   },
+
+
+  // se toman los mismos pasos que la anterior. Lo único que varía es que ahora la condición
+  // es "si nombre a es mayor que nombre b"
 
   sortZToATitle: (data, tabActive) => {
     if (tabActive === "Movies") {
@@ -153,6 +174,13 @@ export const orderImport = {
     }
   },
 
+  //En este caso, sort no toma números de la misma manera que letras. Entonces la función cambia.
+  //Se resta el valor de a con el valor de b para determinar su orden.
+
+  /*Si a es menor que b, la resta será negativa y a se colocará antes en la ordenación. 
+  Si a es mayor, la resta será positiva y b se colocará antes. 
+  Si son iguales, la resta será 0 y el orden no cambiará. */
+
   sortRDAsc: (data, tabActive) => {
     if (tabActive === "Movies") {
       return data.sort((a, b) => a.release_date - b.release_date);
@@ -160,6 +188,7 @@ export const orderImport = {
       return [];
     }
   },
+  //ahora se resta el valor de b menos es de a
 
   sortRDDesc: (data, tabActive) => {
     if (tabActive === "Movies") {
@@ -170,13 +199,15 @@ export const orderImport = {
   },
 };
 
-// Se crea constante searchImport para iniciar una funcion de (filtro busqueda)
-// searchFilmsByTitle esta funcion, tendra por parametro searchString
-//haciendo referencia al valor que rescatara el input
-// con if diremos "si el largo de este valor es mayor que 2"
-// de la data retorname dicho elemento mayor a 2 string, (dentro de name)
-// con toLowerCase estoy pasando la cadena de texto a una nueva que consta solo de letras minusculas
-//Si no se cumple esta condicion, retornamos la data.
+/*declaramos la constante searchImport como objeto = {}  
+para iniciar una funcion de (filtro busqueda)
+searchFilmsByTitle esta funcion, tendra por parametro searchString
+haciendo referencia al valor que rescatara el input
+con if diremos "si el largo de este valor es mayor que 2"
+retorname dicho elemento mayor a 2 string, (dentro de name)
+con toLowerCase estoy pasando la cadena de texto a una nueva que consta solo de letras minusculas
+Si no se cumple esta condicion, retornamos la data.*/
+
 export const searchImport = {
   searchFilmsByTitle: (searchString, data) => {
     if (!data) {
@@ -224,13 +255,31 @@ export const searchImport = {
   },
 };
 
+
+
+/*se crea la funcion calcularDirectores con su parametro 
+
+Esta función recibe un arreglo de datos de films
+Dentro de la función se crea un objeto vacío llamado directores
+
+Luego, se itera sobre cada elemento del arreglo y se verifica 
+si el director ya existe en el objeto directores
+Si existe, se incrementa la cantidad y se suma 
+el puntaje totalRtScore al total correspondiente al director. 
+
+Si no existe, se agrega una nueva entrada en el objeto directores 
+con la cantidad inicializada en 1 y el puntaje totalRtScore
+inicializado con el valor del elemento actual. 
+
+Finalmente, se retorna el objeto directores. */
+
 export const chartDirectors = {
 
   calcularDirectores: (filmsData) => {
     const directores = {};
 
     filmsData.forEach(element => {
-      if ((element.director in directores)) {
+      if ((element.director in directores)) { //in devuelve true si la propiedad especificada está en el objeto especificado 
         directores[element.director].cantidad++;
         directores[element.director].totalRtScore += parseFloat(element.rt_score);
       } else {

@@ -1,12 +1,12 @@
 import { expect } from "@jest/globals";
 import {
   orderImport,
-  filterImport,
+  filterImport,  //Se importan las funciones a testear desde data.js.
   searchImport,
   chartDirectors,
   chartProducers
-} from "../src/data.js"
-const moviesData = [
+} from "../src/data.js"   //Use ruta relativa 
+const moviesData = [    //Se trabajo con este estracto de la data
   {
     title: "Castle in the Sky",
     director: "Hayao Miyazaki",
@@ -57,6 +57,18 @@ const locationsData = [
   { name: "LaPuta", climate: "Continental", terrain: "City" },
   { name: "Matsugo", climate: "Continental", terrain: "River" },
 ];
+
+/*Lo que se testea a continuación es la funcion ordenar
+El siguiente test se enfoca en la función para ordenar por fecha de lanzamiento 
+
+describe se utiiza para organizar las pruebas, en este caso
+primero por variable(orderImport) y luego por función(sortsortRDAsc)
+
+con it se define la prueba unitaria, en este caso este test en específico
+debería ordenar por orden de lanzamiento de mayor a menor.
+
+se define el tabActive porque es uno de los parm de la función
+expect es "se espera que" la siguiente función retorne un resultado que sea igual a..*/
 
 describe("orderImport", () => {
   describe("orderimport.sortAToZTitle", () => {
@@ -233,6 +245,7 @@ describe("orderImport", () => {
     });
     it("should sort nothing (empty array)", () => {
       expect(orderImport.sortRDAsc(null, null)).toEqual([]);
+      //En este caso, no hay elementos en los parámetros y el resultado debería ser un array vacío 
     });
   });
 });
@@ -776,6 +789,30 @@ describe("chartDirectors", () => {
       })
     });
   });
+
+
+
+
+
+  /* test calculo total rt_score por total de peliculas
+  Con la función calcularProducer iniciamos el test en el módulo chartProducers 
+este agrupará varias pruebas relacionadas con las funcionalidades de chartProducers. 
+Le damos una instruccion especifica con la funcion calcularProducer
+
+mensaje "should return the sum of the total rating score" describe 
+lo que se espera de la prueba.
+
+se utiliza la función expect para verificar si el resultado de llamar 
+a chartProducers.calcularProducer con moviesData coincide con un objeto esperado.
+
+El 2do test verifica si la función calcularProducer arroja un error cuando no s
+e proporciona ningún dato. El mensaje "should return an error when the data is not found" 
+describe la expectativa de la prueba.
+
+La primera prueba verifica que la función retorne la suma total 
+de los puntajes de calificación. 
+La segunda prueba verifica que se lance un error cuando no se encuentra ningún dato.*/
+
   describe("calcularDirectores", () => {
     it("should return an error when the data is not found", () => {
       expect(() => {
